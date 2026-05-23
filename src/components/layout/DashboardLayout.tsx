@@ -50,12 +50,12 @@ export default function DashboardLayout({
         {/* MOBILE HEADER */}
 
       <div className='lg:hidden h-16 border-b border-slate-800 bg-slate-950 px-4 flex items-center'>
-        <button
-            onClick={() => setOpen(true)}
-            className='h-10 w-10 rounded-xl border border-slate-800 bg-white flex items-center justify-center text-white text-lg hover:bg-slate-800 transition'
-          >
-            <MenuOutlined className="text-white"/>
-       </button>
+              <button
+                  onClick={() => setOpen(true)}
+                  className='flex items-center justify-center text-white text-2xl'
+                >
+                  <MenuOutlined />
+              </button>
 
           <h2 className='ml-4 text-lg font-semibold text-white'>
             WorkEthics
