@@ -45,6 +45,9 @@ export default function AppsHistoryPage() {
         <Table
           pagination={false}
           dataSource={data}
+          scroll={{
+              x: 900,
+            }}
           columns={[
             {
               title: 'Employee',

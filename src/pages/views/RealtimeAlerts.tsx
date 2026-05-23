@@ -1,34 +1,55 @@
 import DashboardLayout from '../../components/layout/DashboardLayout'
+
 import PageHeader from '../../components/common/PageHeader'
 
-import { Card } from 'antd'
+import {
+  Card,
+  Tag,
+  Avatar,
+} from 'antd'
 
-const alerts = [
-  'Sarah Jenkins became idle',
-  'Michael opened YouTube',
-  'David inactive for 20 mins',
-]
+const alerts = Array.from({
+  length: 10,
+})
 
 export default function RealtimeAlertsPage() {
   return (
     <DashboardLayout>
       <PageHeader
-        title='Realtime Alerts'
-        subtitle='Live monitoring feed'
+        title='Real Time Alerts'
+        subtitle='Realtime employee behavior notifications'
       />
 
-      <div className='space-y-4'>
-        {alerts.map((alert, index) => (
+      <div className='space-y-5'>
+        {alerts.map((_, index) => (
           <Card
             key={index}
             className='bg-slate-900 border-slate-800'
           >
-            <div className='flex items-center gap-3'>
-              <div className='h-3 w-3 rounded-full bg-red-500 animate-pulse' />
+            <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4'>
+              <div className='flex items-start gap-4'>
+                <Avatar size={50} />
 
-              <p className='text-white'>
-                {alert}
-              </p>
+                <div>
+                  <h3 className='text-white font-medium'>
+                    Michael Chen
+                  </h3>
+
+                  <p className='text-slate-400 text-sm mt-1'>
+                    Inactive for over 30 minutes
+                  </p>
+                </div>
+              </div>
+
+              <div className='flex flex-wrap items-center gap-3'>
+                <Tag color='red'>
+                  High Risk
+                </Tag>
+
+                <p className='text-slate-500 text-sm'>
+                  2 mins ago
+                </p>
+              </div>
             </div>
           </Card>
         ))}

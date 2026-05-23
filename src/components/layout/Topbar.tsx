@@ -109,66 +109,67 @@ export default function Topbar() {
   ]
 
   return (
-    <header className='h-16 border-b border-slate-800 bg-slate-950 px-6 flex items-center justify-between'>
-      {/* SEARCH */}
+   <header className='hidden lg:flex h-16 border-b border-slate-800 bg-slate-950 px-6 py-8 items-center justify-between gap-4'>
+  {/* SEARCH */}
 
-      <div className='w-full max-w-md'>
-        <Input.Search
-          placeholder='Search employees, apps, reports...'
+  <div className='w-full max-w-md'>
+    <Input.Search
+      placeholder='Search employees, apps, reports...'
+      size='large'
+    />
+  </div>
+
+  {/* ACTIONS */}
+
+  <div className='flex items-center gap-3 flex-shrink-0'>
+    {/* NOTIFICATIONS */}
+
+    <button className='relative text-xl text-slate-300 hover:text-white transition'>
+      <BellOutlined />
+
+      <span className='absolute -top-1 -right-1 h-2 w-2 rounded-full bg-red-500'></span>
+    </button>
+
+    {/* ADD USERS */}
+
+    <Button
+      type='primary'
+      icon={<PlusOutlined />}
+      size='middle'
+      className='hidden xl:flex'
+    >
+      Add Users
+    </Button>
+
+    {/* PROFILE */}
+
+    <Dropdown
+      menu={{
+        items: profileItems,
+      }}
+      trigger={['click']}
+      placement='bottomRight'
+    >
+      <button className='flex items-center gap-3 hover:bg-slate-900 px-2 py-1 rounded-xl transition'>
+        <Avatar
           size='large'
+          icon={<UserOutlined />}
         />
-      </div>
 
-      {/* ACTIONS */}
+        <div className='hidden xl:block text-left'>
+          <p className='text-sm font-medium leading-none'>
+            Admin User
+          </p>
 
-      <div className='flex items-center gap-4'>
-        {/* NOTIFICATION */}
+          <span className='text-xs text-slate-400'>
+            Super Admin
+          </span>
+        </div>
 
-        <button className='relative text-xl text-slate-300 hover:text-white transition'>
-          <BellOutlined />
-
-          <span className='absolute -top-1 -right-1 h-2 w-2 rounded-full bg-red-500'></span>
-        </button>
-
-        {/* ADD USERS */}
-
-        <Button
-          type='primary'
-          icon={<PlusOutlined />}
-          size='large'
-        >
-          Add Users
-        </Button>
-
-        {/* PROFILE DROPDOWN */}
-
-        <Dropdown
-          menu={{
-            items: profileItems,
-          }}
-          trigger={['click']}
-          placement='bottomRight'
-        >
-          <button className='flex items-center gap-3 hover:bg-slate-900 px-2 py-1 rounded-xl transition'>
-            <Avatar
-              size='large'
-              icon={<UserOutlined />}
-            />
-
-            <div className='text-left hidden md:block'>
-              <p className='text-sm font-medium leading-none'>
-                Admin User
-              </p>
-
-              <span className='text-xs text-slate-400'>
-                Super Admin
-              </span>
-            </div>
-
-            <DownOutlined className='text-xs text-slate-400' />
-          </button>
-        </Dropdown>
-      </div>
-    </header>
+        <DownOutlined className='hidden xl:block text-xs text-slate-400' />
+      </button>
+    </Dropdown>
+  </div>
+</header>
   )
 }

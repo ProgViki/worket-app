@@ -22,6 +22,10 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 const { Sider } = Layout
 
+interface Props {
+  mobile?: boolean
+}
+
 const menuItems: MenuProps['items'] = [
   {
     key: 'realtime',
@@ -184,19 +188,30 @@ const menuItems: MenuProps['items'] = [
   },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({
+  mobile,
+}: Props) {
   const navigate = useNavigate()
 
   const location = useLocation()
 
   return (
     <Sider
-      width={290}
-      className='min-h-screen border-r border-slate-800 bg-slate-950'
-    >
+  width={290}
+  trigger={null}
+  collapsible
+  collapsedWidth={0}
+  className={`
+    min-h-screen
+    border-r
+    border-slate-800
+    bg-slate-950
+    ${mobile ? '!block' : ''}
+  `}
+>
       {/* LOGO */}
 
-      <div className='h-16 border-b border-slate-800 flex items-center px-6'>
+      <div className='h-16 border-b border-slate-800 flex items-center px-6 pt-2'>
         <div>
           <h1 className='text-xl font-bold text-white'>
             WorkEthics
@@ -221,39 +236,7 @@ export default function Sidebar() {
         />
       </div>
 
-      {/* FOOTER */}
-
-      {/* <div className='absolute bottom-0 left-0 right-0 p-4 border-t border-slate-800 bg-slate-950'>
-        <div className='rounded-2xl bg-slate-900 border border-slate-800 p-4'>
-          <p className='text-sm font-medium text-white'>
-            Productivity Score
-          </p>
-
-          <div className='mt-3'>
-            <div className='flex justify-between text-xs mb-2'>
-              <span className='text-slate-400'>
-                Team Efficiency
-              </span>
-
-              <span className='text-green-400'>
-                89%
-              </span>
-            </div>
-
-            <div className='h-2 rounded-full bg-slate-800 overflow-hidden'>
-              <div className='h-full w-[89%] bg-green-500 rounded-full' />
-            </div>
-          </div>
-
-          <div className='mt-4 flex items-center gap-2'>
-            <div className='h-2 w-2 rounded-full bg-green-500 animate-pulse' />
-
-            <span className='text-xs text-slate-400'>
-              89 employees online
-            </span>
-          </div>
-        </div>
-      </div> */}
+  
     </Sider>
   )
 }

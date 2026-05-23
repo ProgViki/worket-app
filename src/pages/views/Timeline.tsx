@@ -1,46 +1,73 @@
 import DashboardLayout from '../../components/layout/DashboardLayout'
+
 import PageHeader from '../../components/common/PageHeader'
 
-import { Card } from 'antd'
+import {
+  Card,
+  Avatar,
+  Tag,
+  Timeline,
+  Input,
+} from 'antd'
 
-const employees = [
-  'Sarah Jenkins',
-  'Michael Chen',
-  'David Smith',
-]
+const activities = Array.from({
+  length: 8,
+})
 
 export default function TimelinePage() {
   return (
     <DashboardLayout>
       <PageHeader
         title='Timeline'
-        subtitle='Employee activity timeline'
+        subtitle='Employee realtime activity logs'
       />
 
+      <div className='mb-6'>
+        <Input.Search
+          placeholder='Search employee'
+          size='large'
+          className='max-w-xl'
+        />
+      </div>
+
       <Card className='bg-slate-900 border-slate-800'>
-        <div className='space-y-6'>
-          {employees.map((employee) => (
-            <div key={employee}>
-              <div className='flex justify-between mb-2'>
-                <p className='text-white font-medium'>
-                  {employee}
-                </p>
+        <Timeline
+          items={activities.map((_, index) => ({
+            children: (
+              <div className='pb-5'>
+                <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4'>
+                  <div className='flex items-start gap-4'>
+                    <Avatar size={50} />
 
-                <span className='text-slate-400 text-sm'>
-                  8h 24m tracked
-                </span>
+                    <div>
+                      <h3 className='text-white font-medium'>
+                        Sarah Jenkins
+                      </h3>
+
+                      <p className='text-slate-400 text-sm mt-1'>
+                        Working on VS Code
+                      </p>
+
+                      <div className='flex flex-wrap items-center gap-2 mt-3'>
+                        <Tag color='blue'>
+                          github.com
+                        </Tag>
+
+                        <Tag color='green'>
+                          Productive
+                        </Tag>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className='text-slate-500 text-sm'>
+                    10:4{index} AM
+                  </p>
+                </div>
               </div>
-
-              <div className='flex h-5 rounded-full overflow-hidden'>
-                <div className='bg-green-500 w-[60%]' />
-
-                <div className='bg-yellow-500 w-[20%]' />
-
-                <div className='bg-slate-700 w-[20%]' />
-              </div>
-            </div>
-          ))}
-        </div>
+            ),
+          }))}
+        />
       </Card>
     </DashboardLayout>
   )

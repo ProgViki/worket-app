@@ -1,49 +1,67 @@
 import DashboardLayout from '../../components/layout/DashboardLayout'
+
 import PageHeader from '../../components/common/PageHeader'
 
-import { Button, Card, Table } from 'antd'
+import {
+  Card,
+  Table,
+  Tag,
+} from 'antd'
+
+const data = Array.from({
+  length: 10,
+}).map((_, index) => ({
+  key: index,
+  employee: 'Sarah Jenkins',
+  productivity: '89%',
+  hours: '8h 24m',
+  status: 'Good',
+}))
 
 export default function ReportsPage() {
   return (
     <DashboardLayout>
-      <div className='flex items-center justify-between mb-6'>
-        <PageHeader
-          title='Reports'
-          subtitle='Analytics & exports'
-        />
-
-        <Button type='primary'>
-          Export CSV
-        </Button>
-      </div>
+      <PageHeader
+        title='Reports'
+        subtitle='Productivity and workforce reports'
+      />
 
       <Card className='bg-slate-900 border-slate-800'>
-        <Table
-          pagination={false}
-          dataSource={[
-            {
-              employee: 'Sarah Jenkins',
-              hours: '42h',
-              productivity: '91%',
-            },
-          ]}
-          columns={[
-            {
-              title: 'Employee',
-              dataIndex: 'employee',
-            },
+        <div className='overflow-x-auto'>
+          <Table
+            scroll={{
+              x: 900,
+            }}
+            pagination={false}
+            dataSource={data}
+            columns={[
+              {
+                title: 'Employee',
+                dataIndex: 'employee',
+              },
 
-            {
-              title: 'Hours',
-              dataIndex: 'hours',
-            },
+              {
+                title: 'Work Hours',
+                dataIndex: 'hours',
+              },
 
-            {
-              title: 'Productivity',
-              dataIndex: 'productivity',
-            },
-          ]}
-        />
+              {
+                title: 'Productivity',
+                dataIndex: 'productivity',
+              },
+
+              {
+                title: 'Status',
+
+                render: () => (
+                  <Tag color='green'>
+                    Good
+                  </Tag>
+                ),
+              },
+            ]}
+          />
+        </div>
       </Card>
     </DashboardLayout>
   )

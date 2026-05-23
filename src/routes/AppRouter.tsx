@@ -6,7 +6,6 @@ import ProtectedRoute from './ProtectedRoutes'
 import Overview from '../pages/views/Overview'
 import MyTeamPage from '../pages/views/MyTeam'
 import ScreenshotsPage from '../pages/views/Screenshots'
-import Timeline from '../components/dashboard/Timeline'
 import ReportsPage from '../pages/views/Reports'
 import RiskUsersPage from '../pages/views/RiskUsers'
 import RealtimeAlertsPage from '../pages/views/RealtimeAlerts'
@@ -15,6 +14,10 @@ import SettingsPage from '../pages/views/Settings'
 import DownloadAppPage from '../pages/views/DownloadApp'
 import ReviewAppsPage from '../pages/views/ReviewApps'
 import BillingPage from '../pages/views/Billing'
+import TimelinePage from '../pages/views/Timeline'
+import AppsSummaryPage from '../pages/views/AppsSummary'
+
+
 
 
 
@@ -55,7 +58,7 @@ export default function AppRouter() {
 
       <Route
         path='/timeline'
-        element={<Timeline />}
+        element={<TimelinePage />}
       />
 
       <Route
@@ -95,7 +98,7 @@ export default function AppRouter() {
 
       <Route
         path='/apps-summary'
-        element={<AppsHistoryPage />}
+        element={<AppsSummaryPage />}
       />
 
       <Route

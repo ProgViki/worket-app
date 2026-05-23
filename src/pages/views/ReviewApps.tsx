@@ -48,6 +48,9 @@ export default function ReviewAppsPage() {
         <Table
           pagination={false}
           dataSource={data}
+          scroll={{
+              x: 900,
+            }}
           columns={[
             {
               title: 'Application',

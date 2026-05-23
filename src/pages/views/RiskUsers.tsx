@@ -1,40 +1,77 @@
 import DashboardLayout from '../../components/layout/DashboardLayout'
+
 import PageHeader from '../../components/common/PageHeader'
 
-import { Card, Tag } from 'antd'
+import {
+  Card,
+  Table,
+  Tag,
+  Progress,
+} from 'antd'
+
+const users = Array.from({
+  length: 8,
+}).map((_, index) => ({
+  key: index,
+  name: 'Michael Chen',
+  risk: 'High',
+  activity: 32,
+  issue: 'Suspicious inactivity',
+}))
 
 export default function RiskUsersPage() {
   return (
     <DashboardLayout>
       <PageHeader
         title='Risk Users'
-        subtitle='Flagged employees'
+        subtitle='Employees requiring attention'
       />
 
-      <div className='space-y-4'>
-        {[1, 2, 3].map((item) => (
-          <Card
-            key={item}
-            className='bg-slate-900 border-slate-800'
-          >
-            <div className='flex justify-between items-center'>
-              <div>
-                <h3 className='text-white font-semibold'>
-                  Michael Chen
-                </h3>
+      <Card className='bg-slate-900 border-slate-800'>
+        <div className='overflow-x-auto'>
+          <Table
+            scroll={{
+              x: 950,
+            }}
+            pagination={false}
+            dataSource={users}
+            columns={[
+              {
+                title: 'Employee',
+                dataIndex: 'name',
+              },
 
-                <p className='text-slate-400 mt-1'>
-                  Excessive idle activity detected
-                </p>
-              </div>
+              {
+                title: 'Issue',
+                dataIndex: 'issue',
+              },
 
-              <Tag color='red'>
-                HIGH RISK
-              </Tag>
-            </div>
-          </Card>
-        ))}
-      </div>
+              {
+                title: 'Activity',
+
+                render: (_, record) => (
+                  <div className='w-32'>
+                    <Progress
+                      percent={record.activity}
+                      size='small'
+                    />
+                  </div>
+                ),
+              },
+
+              {
+                title: 'Risk Level',
+
+                render: () => (
+                  <Tag color='red'>
+                    High
+                  </Tag>
+                ),
+              },
+            ]}
+          />
+        </div>
+      </Card>
     </DashboardLayout>
   )
 }
