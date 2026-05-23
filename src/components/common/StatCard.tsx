@@ -3,6 +3,7 @@ import { Card } from 'antd'
 interface Props {
   title: string
   value: string
+  icon: React.ReactNode
 }
 
 export default function StatCard({
